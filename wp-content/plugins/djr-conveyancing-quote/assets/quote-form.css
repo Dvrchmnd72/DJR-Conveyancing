@@ -592,3 +592,197 @@
     border: 2px solid #e2e5ea !important;
     border-radius: 10px !important;
 }
+
+/* ============================================
+   Unified Conveyancing Quote Styling — v1
+   Aligns DJR quote form with OneStop/Envision preferred navy style
+   ============================================ */
+
+.osl-cq-wrapper {
+    max-width: 900px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.14), 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+.osl-cq-form-header,
+.osl-cq-summary-header {
+    background: linear-gradient(135deg, #0f172a 0%, #17213a 100%) !important;
+}
+
+.osl-cq-form-header::before,
+.osl-cq-form-header::after {
+    background: rgba(255, 255, 255, 0.07) !important;
+}
+
+.osl-cq-header-text h3 {
+    color: #ffffff !important;
+}
+
+.osl-cq-header-text span {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.osl-cq-label,
+.osl-cq-radio-group label,
+.osl-cq-form-body select,
+.osl-cq-form-body input[type="text"],
+.osl-cq-form-body input[type="email"],
+.osl-cq-form-body input[type="tel"],
+.osl-cq-result-inner h2,
+.osl-cq-result-inner h4,
+.osl-cq-summary-table td + td {
+    color: #0f172a !important;
+}
+
+.osl-cq-radio-group label:hover {
+    border-color: #0f172a !important;
+    background: #f8fafc !important;
+}
+
+.osl-cq-radio-group input[type="radio"]:checked + label {
+    border-color: #0f172a !important;
+    background: #f8fafc !important;
+    color: #0f172a !important;
+}
+
+.osl-cq-radio-group input[type="radio"]:checked + label:before {
+    border-color: #0f172a !important;
+    background: #0f172a !important;
+}
+
+.osl-cq-form-body select:focus,
+.osl-cq-form-body input:focus {
+    border-color: #0f172a !important;
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.12) !important;
+}
+
+.osl-cq-button,
+button.osl-cq-button,
+input.osl-cq-button {
+    background: #0f172a !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    min-width: 280px !important;
+    height: 54px !important;
+    line-height: 54px !important;
+    padding: 0 42px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.24) !important;
+}
+
+.osl-cq-button:hover,
+button.osl-cq-button:hover,
+input.osl-cq-button:hover {
+    background: #17213a !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.28) !important;
+}
+
+.osl-cq-total,
+.osl-cq-total-box,
+.osl-cq-result-total {
+    background: #0f172a !important;
+    color: #ffffff !important;
+}
+
+.osl-cq-hidden-price::after {
+    color: #0f172a !important;
+}
+
+@media (max-width: 768px) {
+    .osl-cq-wrapper {
+        border-radius: 14px !important;
+    }
+
+    .osl-cq-form-header,
+    .osl-cq-form-body,
+    .osl-cq-result-inner {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+
+    .osl-cq-row-2col,
+    .osl-cq-summary-columns {
+        display: block !important;
+    }
+
+    .osl-cq-col,
+    .osl-cq-summary-left,
+    .osl-cq-summary-right {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+
+    .osl-cq-button,
+    button.osl-cq-button,
+    input.osl-cq-button {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+}
+
+/* ============================================
+   DJR force override — quote styling v2
+   Targets live DJR theme cascade directly
+   ============================================ */
+
+body #top .osl-cq-wrapper .osl-cq-form-header,
+body .osl-cq-wrapper .osl-cq-form-header {
+    background: #0f172a !important;
+    background-image: linear-gradient(135deg, #0f172a 0%, #17213a 100%) !important;
+}
+
+body #top .osl-cq-wrapper .osl-cq-header-text h3,
+body .osl-cq-wrapper .osl-cq-header-text h3 {
+    color: #ffffff !important;
+}
+
+body #top .osl-cq-wrapper .osl-cq-header-text span,
+body .osl-cq-wrapper .osl-cq-header-text span {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+body #top button#osl-cq-get-quote.osl-cq-button,
+body button#osl-cq-get-quote.osl-cq-button,
+body #top .osl-cq-wrapper button.osl-cq-button,
+body .osl-cq-wrapper button.osl-cq-button {
+    background: #0f172a !important;
+    background-image: none !important;
+    color: #ffffff !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    min-width: 280px !important;
+    height: 54px !important;
+    line-height: 1 !important;
+    padding: 0 42px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.24) !important;
+}
+
+body #top button#osl-cq-get-quote.osl-cq-button:hover,
+body button#osl-cq-get-quote.osl-cq-button:hover,
+body #top .osl-cq-wrapper button.osl-cq-button:hover,
+body .osl-cq-wrapper button.osl-cq-button:hover {
+    background: #17213a !important;
+    background-image: none !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.28) !important;
+}
