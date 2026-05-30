@@ -786,3 +786,48 @@ body .osl-cq-wrapper button.osl-cq-button:hover {
     transform: translateY(-1px) !important;
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.28) !important;
 }
+
+/* ============================================
+   Unified Total Box Override — v3
+   Navy total panel with white text
+   ============================================ */
+
+body #top .osl-cq-wrapper .osl-cq-summary-total,
+body .osl-cq-wrapper .osl-cq-summary-total {
+    background: #0f172a !important;
+    background-image: none !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.24) !important;
+    padding: 16px 20px !important;
+    margin-top: 22px !important;
+}
+
+body #top .osl-cq-wrapper .osl-cq-summary-total table,
+body .osl-cq-wrapper .osl-cq-summary-total table,
+body #top .osl-cq-wrapper .osl-cq-summary-total tbody,
+body .osl-cq-wrapper .osl-cq-summary-total tbody,
+body #top .osl-cq-wrapper .osl-cq-summary-total tr,
+body .osl-cq-wrapper .osl-cq-summary-total tr,
+body #top .osl-cq-wrapper .osl-cq-summary-total td,
+body .osl-cq-wrapper .osl-cq-summary-total td {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+}
+
+body #top .osl-cq-wrapper .osl-cq-summary-total h3,
+body .osl-cq-wrapper .osl-cq-summary-total h3,
+body #top .osl-cq-wrapper .osl-cq-summary-total td h3,
+body .osl-cq-wrapper .osl-cq-summary-total td h3 {
+    color: #ffffff !important;
+    background: transparent !important;
+    margin: 0 !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+}
+
+body #top .osl-cq-wrapper .osl-cq-summary-total td + td,
+body .osl-cq-wrapper .osl-cq-summary-total td + td {
+    text-align: right !important;
+}
