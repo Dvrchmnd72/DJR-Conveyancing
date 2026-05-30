@@ -1,0 +1,594 @@
+/* ============================================
+   OSL Conveyancing Quote Form — Premium Redesign
+   Brand: Navy #1B2E4A | Gold #C5A267
+   ============================================ */
+
+.osl-cq-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(27,46,74,0.18), 0 4px 16px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+.osl-cq-clear { clear: both; }
+
+/* ============================================
+   HEADER
+   ============================================ */
+.osl-cq-form-header {
+    background: linear-gradient(135deg, #1B2E4A 0%, #243d61 100%);
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+}
+.osl-cq-form-header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: rgba(197,162,103,0.08);
+    border-radius: 50%;
+}
+.osl-cq-form-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: 80px;
+    width: 240px; height: 240px;
+    background: rgba(197,162,103,0.05);
+    border-radius: 50%;
+}
+.osl-cq-logo { float: left; margin-right: 25px; position: relative; z-index: 1; }
+.osl-cq-logo img { max-height: 60px; width: auto; }
+.osl-cq-header-text { float: left; position: relative; z-index: 1; }
+.osl-cq-header-text h3 {
+    color: #C5A267 !important;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    padding: 0;
+    letter-spacing: -0.3px;
+}
+.osl-cq-header-text span {
+    color: rgba(255,255,255,0.75);
+    font-size: 15px;
+}
+
+/* ============================================
+   FORM BODY
+   ============================================ */
+.osl-cq-form-body {
+    background: #ffffff;
+    padding: 36px 40px;
+}
+
+.osl-cq-row { margin-bottom: 24px; }
+.osl-cq-row-2col { display: flex; gap: 20px; }
+.osl-cq-col { flex: 1; }
+
+.osl-cq-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1B2E4A;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+/* ============================================
+   RADIO / CHECKBOX BUTTONS — card style
+   ============================================ */
+.osl-cq-radio-group {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+.osl-cq-radio-group input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+}
+.osl-cq-radio-group label {
+    position: relative;
+    padding: 13px 22px 13px 48px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1B2E4A;
+    background: #f7f8fa;
+    border: 2px solid #e2e5ea;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    line-height: 1.4;
+    min-width: 160px;
+}
+.osl-cq-radio-group label:hover {
+    border-color: #C5A267;
+    background: #fdf9f3;
+}
+.osl-cq-radio-group label:before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background: #fff;
+    transition: all 0.2s;
+}
+.osl-cq-radio-group input[type="radio"]:checked + label {
+    border-color: #1B2E4A;
+    background: #f0f4f9;
+    color: #1B2E4A;
+}
+.osl-cq-radio-group input[type="radio"]:checked + label:before {
+    border-color: #1B2E4A;
+    background: #1B2E4A;
+    box-shadow: inset 0 0 0 4px #fff;
+}
+
+/* ============================================
+   SELECT & INPUT
+   ============================================ */
+.osl-cq-form-body select,
+.osl-cq-form-body input[type="text"],
+.osl-cq-form-body input[type="email"],
+.osl-cq-form-body input[type="tel"] {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    font-size: 15px;
+    color: #1B2E4A;
+    border: 2px solid #e2e5ea;
+    border-radius: 10px;
+    background: #f7f8fa;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    transition: all 0.2s ease;
+}
+.osl-cq-form-body select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2E4A' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+.osl-cq-form-body select:focus,
+.osl-cq-form-body input:focus {
+    border-color: #C5A267;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(197,162,103,0.15);
+    outline: none;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.osl-cq-button {
+    background: linear-gradient(135deg, #C5A267 0%, #b8914f 100%) !important;
+    color: #ffffff !important;
+    border: none;
+    border-radius: 10px;
+    height: 54px;
+    line-height: 54px;
+    padding: 0 50px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(197,162,103,0.4);
+}
+.osl-cq-button:hover {
+    background: linear-gradient(135deg, #d4b278 0%, #C5A267 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(197,162,103,0.45);
+    color: #fff !important;
+}
+.osl-cq-button:active { transform: translateY(0); }
+.osl-cq-button:disabled { cursor: not-allowed !important; opacity: 0.6; transform: none; }
+
+.osl-cq-submit-btn {
+    background: linear-gradient(135deg, #1B2E4A 0%, #243d61 100%) !important;
+    box-shadow: 0 4px 14px rgba(27,46,74,0.35);
+}
+.osl-cq-submit-btn:hover {
+    background: linear-gradient(135deg, #243d61 0%, #2e4f7a 100%) !important;
+    box-shadow: 0 8px 20px rgba(27,46,74,0.4);
+}
+
+.osl-cq-row-submit { text-align: center; margin-top: 8px; }
+
+/* ============================================
+   QUOTE RESULT
+   ============================================ */
+.osl-cq-result-container { margin-top: 0; }
+.osl-cq-result-inner {
+    padding: 40px;
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+}
+.osl-cq-result-inner h2 {
+    color: #1B2E4A;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.osl-cq-result-inner h4 { color: #1B2E4A; font-size: 16px; }
+
+/* Summary Columns */
+.osl-cq-summary-columns { display: flex; gap: 24px; }
+.osl-cq-summary-left { flex: 1; }
+.osl-cq-summary-right { flex: 1; }
+
+.osl-cq-summary-header {
+    background: linear-gradient(135deg, #1B2E4A 0%, #243d61 100%);
+    padding: 13px 20px;
+    border-radius: 10px 10px 0 0;
+}
+.osl-cq-summary-header h4 {
+    color: #ffffff !important;
+    margin: 0;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.osl-cq-summary-table { width: 100%; border-collapse: collapse; }
+.osl-cq-summary-table tr:nth-child(odd) { background: #f8f9fb; }
+.osl-cq-summary-table td {
+    padding: 11px 16px !important;
+    font-size: 14px;
+    border: none !important;
+    background: transparent !important;
+    color: #333;
+}
+.osl-cq-summary-table td + td {
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 600;
+    color: #1B2E4A;
+}
+
+.osl-cq-summary-table.osl-cq-optional tr:nth-child(odd) { background: transparent; }
+.osl-cq-summary-table.osl-cq-optional tr:nth-child(even) { background: #f8f9fb; }
+.osl-cq-summary-table.osl-cq-optional td { font-size: 13px; }
+.osl-cq-summary-table.osl-cq-optional small { color: #888; }
+
+/* ============================================
+   HIDDEN PRICES
+   ============================================ */
+.osl-cq-hidden-price {
+    color: transparent !important;
+    text-shadow: 0 0 10px rgba(0,0,0,0.25);
+    user-select: none;
+    -webkit-user-select: none;
+    position: relative;
+}
+.osl-cq-hidden-price::after {
+    content: '• • •';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #C5A267;
+    font-size: 15px;
+    letter-spacing: 4px;
+    text-shadow: none;
+}
+.osl-cq-price-revealed .osl-cq-hidden-price { color: inherit !important; text-shadow: none; }
+.osl-cq-price-revealed .osl-cq-hidden-price::after { display: none; }
+
+/* Total */
+.osl-cq-summary-total {
+    background: linear-gradient(135deg, #1B2E4A 0%, #243d61 100%);
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin-top: 16px;
+    box-shadow: 0 4px 14px rgba(27,46,74,0.2);
+}
+.osl-cq-summary-total table { width: 100%; }
+.osl-cq-summary-total td { padding: 0 !important; background: transparent !important; border: none !important; }
+.osl-cq-summary-total td + td { text-align: right; }
+.osl-cq-summary-total h3 { color: #C5A267 !important; margin: 0; font-size: 22px; }
+
+/* ============================================
+   GATE BOX
+   ============================================ */
+.osl-cq-gate-box-wrap { margin-top: 24px; }
+.osl-cq-gate-box {
+    background: linear-gradient(135deg, #1B2E4A 0%, #243d61 100%);
+    border-radius: 14px;
+    padding: 38px 40px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(27,46,74,0.25);
+    position: relative;
+    overflow: hidden;
+}
+.osl-cq-gate-box::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 200px; height: 200px;
+    background: rgba(197,162,103,0.07);
+    border-radius: 50%;
+}
+.osl-cq-gate-lock { font-size: 42px; margin-bottom: 12px; position: relative; z-index: 1; }
+.osl-cq-gate-box h3 {
+    color: #C5A267 !important;
+    font-size: 24px;
+    margin: 0 0 10px 0;
+    position: relative; z-index: 1;
+}
+.osl-cq-gate-box p {
+    color: rgba(255,255,255,0.75);
+    font-size: 15px;
+    margin: 0 0 24px 0;
+    position: relative; z-index: 1;
+}
+.osl-cq-gate-box small {
+    display: block;
+    margin-top: 16px;
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    position: relative; z-index: 1;
+}
+
+.osl-cq-gate-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+}
+.osl-cq-gate-input {
+    flex: 1;
+    min-width: 220px;
+    height: 52px;
+    padding: 0 18px;
+    font-size: 15px;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.97);
+    color: #1B2E4A;
+    transition: all 0.2s;
+}
+.osl-cq-gate-input:focus {
+    border-color: #C5A267;
+    box-shadow: 0 0 0 3px rgba(197,162,103,0.25);
+    outline: none;
+}
+.osl-cq-gate-input.osl-cq-error { border-color: #ff4444 !important; background: #fff5f5; }
+.osl-cq-gate-form .osl-cq-button { white-space: nowrap; padding: 0 32px; }
+
+/* Contact Button */
+.osl-cq-contact-btn {
+    background: linear-gradient(135deg, #C5A267 0%, #b8914f 100%) !important;
+    color: #ffffff !important;
+    padding: 10px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: all 0.2s;
+    box-shadow: 0 3px 10px rgba(197,162,103,0.3);
+}
+.osl-cq-contact-btn:hover {
+    background: linear-gradient(135deg, #d4b278 0%, #C5A267 100%) !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+}
+
+/* ============================================
+   DETAILS FORM
+   ============================================ */
+.osl-cq-details-section {
+    margin-top: 30px;
+    border-top: 2px solid #f0f2f5;
+    padding-top: 30px;
+}
+.osl-cq-details-form {
+    padding: 30px;
+    background: #f7f8fa;
+    border-radius: 12px;
+    border: 1px solid #e8eaee;
+}
+.osl-cq-details-form label {
+    display: block;
+    font-weight: 700;
+    color: #1B2E4A;
+    margin-bottom: 6px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.osl-cq-details-form input[type="text"],
+.osl-cq-details-form input[type="email"],
+.osl-cq-details-form input[type="tel"] {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    font-size: 15px;
+    border: 2px solid #e2e5ea;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background: #fff;
+    color: #1B2E4A;
+    transition: all 0.2s;
+}
+.osl-cq-details-form input:focus {
+    border-color: #C5A267;
+    box-shadow: 0 0 0 3px rgba(197,162,103,0.15);
+    outline: none;
+}
+.osl-cq-details-form input.osl-cq-error { border-color: #ff0000 !important; }
+.osl-cq-details-form .osl-cq-row { margin-bottom: 16px; }
+.osl-cq-details-form .osl-cq-row-2col { display: flex; gap: 20px; }
+.osl-cq-details-form .osl-cq-col { flex: 1; }
+.osl-cq-form-response { color: #e53e3e; font-size: 14px; min-height: 20px; margin-top: 8px; }
+
+/* ============================================
+   THANK YOU
+   ============================================ */
+.osl-cq-thankyou { text-align: center; padding: 48px 40px; }
+.osl-cq-thankyou h3 { color: #1B2E4A; font-size: 28px; margin-bottom: 10px; }
+.osl-cq-thankyou p { font-size: 16px; color: #555; line-height: 1.7; }
+.osl-cq-thankyou-cta {
+    margin-top: 30px;
+    padding: 28px;
+    background: #f7f8fa;
+    border-radius: 14px;
+    border: 1px solid #e2e5ea;
+}
+.osl-cq-thankyou-cta p { margin-bottom: 16px; color: #1B2E4A; font-weight: 600; }
+
+/* Loading spinner */
+.osl-cq-loading { display: inline-block; margin-right: 8px; }
+.osl-cq-loading:after {
+    content: '';
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: osl-spin 0.6s linear infinite;
+    vertical-align: middle;
+}
+@keyframes osl-spin { to { transform: rotate(360deg); } }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .osl-cq-form-header { padding: 24px 20px; }
+    .osl-cq-logo { float: none; margin: 0 0 12px 0; }
+    .osl-cq-header-text { float: none; }
+    .osl-cq-header-text h3 { font-size: 20px; }
+
+    .osl-cq-form-body { padding: 24px 20px; }
+    .osl-cq-row-2col { flex-direction: column; gap: 14px; }
+    .osl-cq-radio-group { flex-direction: column; gap: 10px; }
+    .osl-cq-radio-group label { min-width: unset; }
+
+    .osl-cq-button { padding: 0 30px; width: 100%; }
+
+    .osl-cq-result-inner { padding: 24px 20px; }
+    .osl-cq-summary-columns { flex-direction: column; }
+
+    .osl-cq-gate-box { padding: 28px 20px; }
+    .osl-cq-gate-box h3 { font-size: 20px; }
+    .osl-cq-gate-form { flex-direction: column; }
+    .osl-cq-gate-form .osl-cq-button { width: 100%; }
+
+    .osl-cq-details-form { padding: 20px; }
+    .osl-cq-details-form .osl-cq-row-2col { flex-direction: column; gap: 10px; }
+
+    .osl-cq-thankyou { padding: 30px 20px; }
+}
+
+@media (max-width: 480px) {
+    .osl-cq-header-text h3 { font-size: 18px; }
+    .osl-cq-summary-table td { font-size: 12px; padding: 8px 12px !important; }
+    .osl-cq-gate-box { padding: 20px 15px; }
+}
+
+/* ============================================
+   SPECIFICITY OVERRIDES — force over theme/browser defaults
+   ============================================ */
+
+.osl-cq-wrapper .osl-cq-form-body select,
+.osl-cq-wrapper .osl-cq-form-body input[type="text"],
+.osl-cq-wrapper .osl-cq-form-body input[type="email"],
+.osl-cq-wrapper .osl-cq-form-body input[type="tel"] {
+    background-color: #f7f8fa !important;
+    border: 2px solid #e2e5ea !important;
+    border-radius: 10px !important;
+    height: 52px !important;
+    padding: 0 16px !important;
+    font-size: 15px !important;
+    color: #1B2E4A !important;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+
+.osl-cq-wrapper .osl-cq-form-body select:focus,
+.osl-cq-wrapper .osl-cq-form-body input:focus {
+    border-color: #C5A267 !important;
+    background-color: #fff !important;
+    box-shadow: 0 0 0 3px rgba(197,162,103,0.15) !important;
+    outline: none !important;
+}
+
+.osl-cq-wrapper .osl-cq-button {
+    background: linear-gradient(135deg, #C5A267 0%, #b8914f 100%) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    height: 54px !important;
+    line-height: 54px !important;
+    padding: 0 50px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    color: #fff !important;
+    box-shadow: 0 4px 14px rgba(197,162,103,0.4) !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    transition: all 0.25s ease !important;
+}
+
+.osl-cq-wrapper .osl-cq-button:hover {
+    background: linear-gradient(135deg, #d4b278 0%, #C5A267 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(197,162,103,0.45) !important;
+}
+
+.osl-cq-wrapper .osl-cq-submit-btn {
+    background: linear-gradient(135deg, #1B2E4A 0%, #243d61 100%) !important;
+    box-shadow: 0 4px 14px rgba(27,46,74,0.35) !important;
+}
+
+.osl-cq-wrapper .osl-cq-submit-btn:hover {
+    background: linear-gradient(135deg, #243d61 0%, #2e4f7a 100%) !important;
+}
+
+.osl-cq-wrapper {
+    box-shadow: 0 20px 60px rgba(27,46,74,0.18), 0 4px 16px rgba(0,0,0,0.08) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+}
+
+/* ============================================
+   BOOTSTRAP RESETS — kill -webkit-appearance
+   ============================================ */
+
+.osl-cq-wrapper .osl-cq-button,
+.osl-cq-wrapper button.osl-cq-button,
+.osl-cq-wrapper input[type="submit"].osl-cq-button {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+.osl-cq-wrapper .osl-cq-form-body select {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    background-color: #f7f8fa !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2E4A' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    border: 2px solid #e2e5ea !important;
+    border-radius: 10px !important;
+}

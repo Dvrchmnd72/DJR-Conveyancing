@@ -1,0 +1,33 @@
+# Ignore everything by default
+*
+
+# Allow Git control files
+!.gitignore
+
+# Allow custom DJR theme only
+!wp-content/
+wp-content/*
+!wp-content/themes/
+wp-content/themes/*
+!wp-content/themes/djr/
+!wp-content/themes/djr/**
+
+# Never commit sensitive or generated files
+wp-config.php
+error_log
+*.log
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/ai1wm-backups/
+wp-content/updraft/
+
+# Mac Finder metadata
+.DS_Store
+**/.DS_Store
+
+# Track DJR conveyancing quote plugin only
+!wp-content/plugins/
+wp-content/plugins/*
+!wp-content/plugins/djr-conveyancing-quote/
+!wp-content/plugins/djr-conveyancing-quote/**

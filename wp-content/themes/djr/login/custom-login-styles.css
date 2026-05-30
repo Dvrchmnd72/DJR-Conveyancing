@@ -1,0 +1,94 @@
+
+/* ----------------------------------------
+	CSS for Simple Login Screen
+---------------------------------------- */
+
+
+
+body.login {
+background-color:#000000;
+} 
+
+.login h1 a {
+background-image: url('login-logo.png');
+    background-size: 250px auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+    color: #999;
+    height: 84px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.3em;
+    margin: 0px auto 25px;
+    padding: 0px;
+    text-decoration: none;
+    width: 300px;
+    text-indent: -9999px;
+    outline: 0px none;
+    overflow: hidden;
+    display: block;
+}
+
+.login .message {
+    border-left: 4px solid #6a8ec9;
+    background-color: #FFF;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.login label {
+font-size: 12px;
+color: #555555;
+}
+ 
+.login input[type="text"]{
+background-color: #ffffff;
+border-color:#dddddd;
+-webkit-border-radius: 4px;
+}
+ 
+.login input[type="password"]{
+background-color: #ffffff;
+border-color:#dddddd;
+-webkit-border-radius: 4px;
+} 
+
+.login .button-primary {
+width: 120px;
+float:right;
+background-color:#17a8e3 !important;
+background: -webkit-gradient(linear, left top, left bottom, from(#6a8ec9), to(#6a8ec9));
+background: -webkit-linear-gradient(top, #6a8ec9, #6a8ec9);
+background: -moz-linear-gradient(top, #6a8ec9, #6a8ec9);
+background: -ms-linear-gradient(top, #6a8ec9, #6a8ec9);
+background: -o-linear-gradient(top, #6a8ec9, #6a8ec9);
+background-image: -ms-linear-gradient(top, #6a8ec9 0%, #6a8ec9 100%);
+color: #ffffff;
+-webkit-border-radius: 4px;
+border: 1px solid #6a8ec9;
+}
+ 
+.login .button-primary:hover {
+background-color:#17a8e3 !important;
+background: -webkit-gradient(linear, left top, left bottom, from(#6a8ec9), to(#5a7cad ));
+background: -webkit-linear-gradient(top, #6a8ec9, #5a7cad );
+background: -moz-linear-gradient(top, #6a8ec9, #5a7cad );
+background: -ms-linear-gradient(top, #6a8ec9, #5a7cad );
+background: -o-linear-gradient(top, #6a8ec9, #5a7cad );
+background-image: -ms-linear-gradient(top, #6a8ec9 0%, #5a7cad 100%);
+color: #fff;
+-webkit-border-radius: 4px;
+border: 1px solid #6a8ec9;
+}
+ 
+.login .button-primary:active {
+background-color:#6a8ec9 !important;
+background: -webkit-gradient(linear, left top, left bottom, from(#6a8ec9), to(#5a7cad));
+background: -webkit-linear-gradient(top, #6a8ec9, #5a7cad);
+background: -moz-linear-gradient(top, #6a8ec9, #5a7cad);
+background: -ms-linear-gradient(top, #6a8ec9, #5a7cad);
+background: -o-linear-gradient(top, #6a8ec9, #5a7cad);
+background-image: -ms-linear-gradient(top, #6a8ec9 0%, #5a7cad 100%);
+color: #fff;
+-webkit-border-radius: 4px;
+border: 1px solid #6a8ec9;
+} 
