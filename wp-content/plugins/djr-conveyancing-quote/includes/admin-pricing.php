@@ -412,9 +412,13 @@ function osl_cq_get_council_fee_fields($type, $property_type) {
         return array();
     }
 
+    $water_label = ($property_type === 'land')
+        ? 'Water Rates Search (if water connected)'
+        : 'Water Rates Search';
+
     return array(
         'rates_search' => 'Council Rates Search',
-        'water_meter_reading' => 'Council Water Meter Reading',
+        'water_meter_reading' => $water_label,
     );
 }
 
