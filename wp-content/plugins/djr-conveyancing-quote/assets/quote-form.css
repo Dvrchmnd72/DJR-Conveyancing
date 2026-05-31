@@ -831,3 +831,33 @@ body #top .osl-cq-wrapper .osl-cq-summary-total td + td,
 body .osl-cq-wrapper .osl-cq-summary-total td + td {
     text-align: right !important;
 }
+
+/* ============================================
+   DJR result section header text fix — v4
+   Ensures Professional Fee / Disbursements / Optional Services headings are visible
+   ============================================ */
+
+body #top .osl-cq-wrapper .osl-cq-summary-header,
+body .osl-cq-wrapper .osl-cq-summary-header {
+    background: #0f172a !important;
+    color: #ffffff !important;
+}
+
+body #top .osl-cq-wrapper .osl-cq-summary-header *,
+body .osl-cq-wrapper .osl-cq-summary-header *,
+body #top .osl-cq-wrapper .osl-cq-summary-header h1,
+body #top .osl-cq-wrapper .osl-cq-summary-header h2,
+body #top .osl-cq-wrapper .osl-cq-summary-header h3,
+body #top .osl-cq-wrapper .osl-cq-summary-header h4,
+body #top .osl-cq-wrapper .osl-cq-summary-header h5,
+body #top .osl-cq-wrapper .osl-cq-summary-header h6,
+body .osl-cq-wrapper .osl-cq-summary-header h1,
+body .osl-cq-wrapper .osl-cq-summary-header h2,
+body .osl-cq-wrapper .osl-cq-summary-header h3,
+body .osl-cq-wrapper .osl-cq-summary-header h4,
+body .osl-cq-wrapper .osl-cq-summary-header h5,
+body .osl-cq-wrapper .osl-cq-summary-header h6 {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}

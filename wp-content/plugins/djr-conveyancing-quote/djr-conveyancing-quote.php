@@ -8,7 +8,7 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('OSL_CQ_VERSION', '1.2.5-djr-labels2');
+define('OSL_CQ_VERSION', '1.2.6-djr-summary-labels1');
 define('OSL_CQ_PATH', plugin_dir_path(__FILE__));
 define('OSL_CQ_URL', plugin_dir_url(__FILE__));
 
