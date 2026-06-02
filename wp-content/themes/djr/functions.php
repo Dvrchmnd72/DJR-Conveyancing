@@ -189,8 +189,8 @@ $councils = get_posts( array(
 	    'posts_per_page' => -1
 	) );
 
-	$purchasing = get_field_object('field_5e1e8b5afe051', 262);
-	$selling = get_sub_field('field_5e1ea67b7853c', 262);
+	$purchasing = function_exists('get_field_object') ? get_field_object('field_5e1e8b5afe051', 262) : null;
+	$selling = function_exists('get_sub_field') ? get_sub_field('field_5e1ea67b7853c', 262) : null;
 
 	// echo'<pre>';
 	// print_r($purchasing);
@@ -206,8 +206,8 @@ function djr_quote_form_func($attr){
 	    'order' => 'asc'
 	) );
 
-	$purchasing = get_field_object('field_5e1e8b5afe051', $council[0]->ID);
-	$selling = get_field_object('field_5e1ea67b7853c', $council[0]->ID);
+	$purchasing = function_exists('get_field_object') ? get_field_object('field_5e1e8b5afe051', $council[0]->ID) : null;
+	$selling = function_exists('get_field_object') ? get_field_object('field_5e1ea67b7853c', $council[0]->ID) : null;
 
 	$html = '<div class="mrm_djr_quote_form">';
 		$html .= '<div class="mrm_djr_quote_form_header">';
