@@ -44,6 +44,11 @@ function osl_cq_calculate() {
     if (osl_cq_normalize_transaction_type($type) === 'purchase') {
         foreach (osl_cq_get_council_fee_fields($type, $property_type) as $fkey => $flabel) {
             $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey));
+
+            if ($fkey === 'water_meter_reading' && $val <= 0) {
+                continue;
+            }
+
             $disb_total += $val;
             $council_html .= '<tr><td>' . esc_html($flabel) . '</td>';
             $council_html .= '<td>$' . number_format($val, 2) . '</td></tr>';
@@ -140,6 +145,11 @@ function osl_cq_unlock() {
     if (osl_cq_normalize_transaction_type($type) === 'purchase') {
         foreach (osl_cq_get_council_fee_fields($type, $property_type) as $fkey => $flabel) {
             $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey));
+
+            if ($fkey === 'water_meter_reading' && $val <= 0) {
+                continue;
+            }
+
             $disb_total += $val;
             $disb_rows .= '<tr><td style="padding:10px;">' . esc_html($flabel) . '</td><td style="padding:10px;text-align:right;">$' . number_format($val, 2) . '</td></tr>';
         }
