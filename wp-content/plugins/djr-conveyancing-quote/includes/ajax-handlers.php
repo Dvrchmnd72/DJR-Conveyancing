@@ -10,6 +10,7 @@ function osl_cq_calculate() {
     $type = sanitize_text_field($_POST['property_for'] ?? 'purchasing');
     $council_key = sanitize_text_field($_POST['council'] ?? '');
     $property_type = sanitize_text_field($_POST['property_type'] ?? 'house');
+    $tracking_context = osl_cq_collect_activity_payload($_POST);
 
     if (osl_cq_get_pricing_data($council_key, osl_cq_get_default_council_state()) === false) {
         wp_send_json_error(array('message' => 'Pricing is not available for this state.'));
@@ -59,6 +60,10 @@ function osl_cq_calculate() {
     $html .= '<div class="osl-cq-summary-header"><h4>DISBURSEMENTS</h4></div>';
     $html .= '<table class="osl-cq-summary-table">' . $disb_html . $council_html . '</table>';
     $html .= '<div class="osl-cq-summary-total"><table><tr><td><h3>TOTAL</h3></td><td><h3>$' . number_format($total, 2) . '</h3></td></tr></table></div>';
+    $html .= '<div class="osl-cq-result-actions" data-cta-location="quote_result">';
+    $html .= '<a class="osl-cq-contact-btn osl-cq-result-contact" href="/contact/">Contact DJR Conveyancing</a>';
+    $html .= '<a class="osl-cq-contact-btn osl-cq-result-email" href="mailto:info@djrconveyancing.com.au">Email Us</a>';
+    $html .= '</div>';
     $html .= '</div>';
     $html .= '<div class="osl-cq-summary-right"><div class="osl-cq-summary-header"><h4>OPTIONAL SERVICES</h4></div>';
     $html .= '<table class="osl-cq-summary-table osl-cq-optional">';
@@ -69,7 +74,23 @@ function osl_cq_calculate() {
     $html .= '</div></div>';
     $html .= '</div>';
 
-    wp_send_json_success(array('html' => $html));
+    osl_cq_log_activity('quote_generated', array_merge($tracking_context, array(
+        'transaction_type' => osl_cq_normalize_transaction_type($type),
+        'property_type' => $property_type,
+        'council' => $council_name,
+        'quote_total' => $total,
+        'quote_total_band' => osl_cq_activity_quote_band($total),
+    )), 'server');
+
+    wp_send_json_success(array(
+        'html' => $html,
+        'quote_total' => round($total, 2),
+        'quote_total_band' => osl_cq_activity_quote_band($total),
+        'transaction_type' => osl_cq_normalize_transaction_type($type),
+        'property_type' => $property_type,
+        'council' => $council_name,
+        'suburb' => $tracking_context['suburb'] ?? '',
+    ));
 }
 
 add_action('wp_ajax_osl_cq_unlock', 'osl_cq_unlock');

@@ -8,12 +8,13 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('OSL_CQ_VERSION', '1.2.6-djr-summary-labels1');
+define('OSL_CQ_VERSION', '1.2.7-djr-activity1');
 define('OSL_CQ_PATH', plugin_dir_path(__FILE__));
 define('OSL_CQ_URL', plugin_dir_url(__FILE__));
 
 // Include files
 require_once OSL_CQ_PATH . 'includes/admin-pricing.php';
+require_once OSL_CQ_PATH . 'includes/activity-tracking.php';
 require_once OSL_CQ_PATH . 'includes/quote-engine.php';
 require_once OSL_CQ_PATH . 'includes/ajax-handlers.php';
 require_once OSL_CQ_PATH . 'includes/suburbs.php';
@@ -37,6 +38,9 @@ add_shortcode('osl_quote_form', 'osl_cq_render_form');
 // Activation/load: ensure default state/council pricing exists and migrate legacy options.
 register_activation_hook(__FILE__, 'osl_cq_activate');
 function osl_cq_activate() {
+    if (function_exists('osl_cq_create_activity_table')) {
+        osl_cq_create_activity_table();
+    }
     osl_cq_migrate_pricing_options();
     if (!get_option('osl_cq_councils')) {
         update_option('osl_cq_councils', osl_cq_get_default_councils());

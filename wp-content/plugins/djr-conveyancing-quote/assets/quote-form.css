@@ -861,3 +861,65 @@ body .osl-cq-wrapper .osl-cq-summary-header h6 {
     opacity: 1 !important;
     visibility: visible !important;
 }
+
+/* DJR quote result CTA/activity refinement */
+.osl-cq-wrapper .osl-cq-summary-total,
+#osl-cq-result .osl-cq-summary-total {
+    max-width: 360px !important;
+    min-height: 0 !important;
+    padding: 16px 20px !important;
+    margin: 24px 0 18px !important;
+    border-radius: 8px !important;
+}
+
+.osl-cq-wrapper .osl-cq-summary-total h3,
+#osl-cq-result .osl-cq-summary-total h3 {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+}
+
+#osl-cq-result .osl-cq-result-actions,
+.osl-cq-wrapper .osl-cq-result-actions {
+    max-width: 620px !important;
+    margin: 18px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+}
+
+#osl-cq-result .osl-cq-result-actions .osl-cq-contact-btn,
+.osl-cq-wrapper .osl-cq-result-actions .osl-cq-contact-btn {
+    background: #1B2E4A !important;
+    border: 1px solid #1B2E4A !important;
+    color: #ffffff !important;
+    min-height: 40px !important;
+    padding: 9px 16px !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.04em !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    box-shadow: 0 6px 14px rgba(27, 46, 74, 0.22) !important;
+}
+
+#osl-cq-result .osl-cq-result-actions .osl-cq-contact-btn:hover,
+.osl-cq-wrapper .osl-cq-result-actions .osl-cq-contact-btn:hover {
+    background: #263f63 !important;
+    border-color: #263f63 !important;
+    color: #ffffff !important;
+}
+
+@media (max-width: 640px) {
+    #osl-cq-result .osl-cq-result-actions,
+    .osl-cq-wrapper .osl-cq-result-actions {
+        grid-template-columns: 1fr !important;
+        max-width: 100% !important;
+    }
+
+    .osl-cq-wrapper .osl-cq-summary-total,
+    #osl-cq-result .osl-cq-summary-total {
+        max-width: 100% !important;
+    }
+}
