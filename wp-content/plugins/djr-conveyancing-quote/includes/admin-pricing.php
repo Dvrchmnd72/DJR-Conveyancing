@@ -385,10 +385,22 @@ function osl_cq_get_property_types() {
     );
 }
 
-function osl_cq_get_default_fee_fields($type, $property_type) {
+function osl_cq_get_default_fee_fields($type, $property_type, $state = null) {
     $type = osl_cq_normalize_transaction_type($type);
+    $state = function_exists('osl_cq_normalize_state') ? osl_cq_normalize_state($state ?: osl_cq_get_default_council_state()) : 'QLD';
 
     if ($type === 'purchase') {
+        if ($state === 'NSW') {
+            return array(
+                'professional_fee' => 'Professional Fee',
+                'title_search' => 'Title Search',
+                'section_603_certificate' => 'Rate Search Section 603 Certificate',
+                'section_66_certificate' => 'Water Rates Section 66 Certificate',
+                'revenue_nsw_land_tax' => 'Revenue NSW Land Tax',
+                'identity_check' => 'Identity Check',
+            );
+        }
+
         return array(
             'professional_fee' => 'Professional Fee',
             'title_search' => 'Title Search',

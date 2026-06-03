@@ -8,7 +8,7 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('OSL_CQ_VERSION', '1.2.7-djr-activity1');
+define('OSL_CQ_VERSION', '1.2.8-djr-state-pilot');
 define('OSL_CQ_PATH', plugin_dir_path(__FILE__));
 define('OSL_CQ_URL', plugin_dir_url(__FILE__));
 
@@ -98,6 +98,32 @@ function osl_cq_get_default_pricing() {
 
 function osl_cq_get_default_council_state() {
     return 'QLD';
+}
+
+function osl_cq_get_supported_states() {
+    return array(
+        'QLD' => 'Queensland',
+        'NSW' => 'New South Wales',
+        'VIC' => 'Victoria',
+    );
+}
+
+function osl_cq_normalize_state($state) {
+    $state = strtoupper(sanitize_text_field($state));
+    $states = osl_cq_get_supported_states();
+
+    return isset($states[$state]) ? $state : osl_cq_get_default_council_state();
+}
+
+function osl_cq_state_uses_councils($state) {
+    return osl_cq_normalize_state($state) === 'QLD';
+}
+
+function osl_cq_get_state_label($state) {
+    $state = osl_cq_normalize_state($state);
+    $states = osl_cq_get_supported_states();
+
+    return $states[$state] ?? $state;
 }
 
 function osl_cq_get_transaction_types() {
@@ -226,10 +252,20 @@ function osl_cq_merge_legacy_override_into_default($default_pricing, $override_p
 }
 
 function osl_cq_get_default_pricing_structure() {
+    $default = osl_cq_convert_flat_pricing_to_nested(osl_cq_get_default_pricing());
+
     return array(
         'states' => array(
             'QLD' => array(
-                'default' => osl_cq_convert_flat_pricing_to_nested(osl_cq_get_default_pricing()),
+                'default' => $default,
+                'councils' => array(),
+            ),
+            'NSW' => array(
+                'default' => $default,
+                'councils' => array(),
+            ),
+            'VIC' => array(
+                'default' => $default,
                 'councils' => array(),
             ),
         ),
@@ -364,15 +400,21 @@ function osl_cq_get_pricing_data($council_key, $state = 'QLD') {
     return $pricing['states'][$state]['default'] ?? false;
 }
 
-function osl_cq_get_price($council_key, $type, $property_type, $fee_key) {
+function osl_cq_get_price($council_key, $type, $property_type, $fee_key, $state = null) {
     $pricing = osl_cq_get_pricing();
-    $state = osl_cq_get_default_council_state();
+    $state = osl_cq_normalize_state($state ?: osl_cq_get_default_council_state());
+
     if (empty($pricing['states'][$state])) {
         return 0;
     }
 
     $type = osl_cq_normalize_transaction_type($type);
-    $is_council_field = ($type === 'purchase' && in_array($fee_key, array('rates_search', 'water_meter_reading'), true));
+    $is_council_field = (
+        osl_cq_state_uses_councils($state)
+        && $type === 'purchase'
+        && in_array($fee_key, array('rates_search', 'water_meter_reading'), true)
+    );
+
     $source = $is_council_field
         ? ($pricing['states'][$state]['councils'][$council_key] ?? array())
         : ($pricing['states'][$state]['default'] ?? array());

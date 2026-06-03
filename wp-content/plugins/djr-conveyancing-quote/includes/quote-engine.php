@@ -41,6 +41,16 @@ function osl_cq_render_form($atts) {
 
                 <div class="osl-cq-row osl-cq-row-2col">
                     <div class="osl-cq-col">
+                        <label class="osl-cq-label">State</label>
+                        <select name="osl_state" id="osl_state">
+                            <?php foreach (osl_cq_get_supported_states() as $state_key => $state_label): ?>
+                                <option value="<?php echo esc_attr($state_key); ?>" <?php selected($state_key, osl_cq_get_default_council_state()); ?>>
+                                    <?php echo esc_html($state_label); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="osl-cq-col osl-cq-council-field">
                         <label class="osl-cq-label">Local Council / Shire</label>
                         <select name="osl_council" id="osl_council">
                             <?php foreach ($councils as $key => $council): ?>
@@ -50,6 +60,9 @@ function osl_cq_render_form($atts) {
                             <?php endforeach; ?>
                         </select>
                     </div>
+                </div>
+
+                <div class="osl-cq-row">
                     <div class="osl-cq-col">
                         <label class="osl-cq-label">Property Type</label>
                         <select name="osl_property_type" id="osl_property_type">

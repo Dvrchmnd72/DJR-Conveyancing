@@ -8,31 +8,37 @@ function osl_cq_calculate() {
     check_ajax_referer('osl_cq_nonce', 'nonce');
 
     $type = sanitize_text_field($_POST['property_for'] ?? 'purchasing');
+    $state = osl_cq_normalize_state($_POST['state'] ?? osl_cq_get_default_council_state());
     $council_key = sanitize_text_field($_POST['council'] ?? '');
+
+    if (!osl_cq_state_uses_councils($state)) {
+        $council_key = '';
+    }
+
     $property_type = sanitize_text_field($_POST['property_type'] ?? 'house');
     $tracking_context = osl_cq_collect_activity_payload($_POST);
 
-    if (osl_cq_get_pricing_data($council_key, osl_cq_get_default_council_state()) === false) {
+    if (osl_cq_get_pricing_data($council_key, $state) === false) {
         wp_send_json_error(array('message' => 'Pricing is not available for this state.'));
     }
 
-    $council_name = osl_cq_get_council_name($council_key);
+    $council_name = osl_cq_state_uses_councils($state) ? osl_cq_get_council_name($council_key) : osl_cq_get_state_label($state);
     $property_types = osl_cq_get_property_types();
     $property_label = $property_types[$property_type] ?? $property_type;
     $type_label = (osl_cq_normalize_transaction_type($type) === 'purchase') ? 'Purchase' : 'Selling';
 
-    $professional_fee = floatval(osl_cq_get_price($council_key, $type, $property_type, 'professional_fee'));
+    $professional_fee = floatval(osl_cq_get_price($council_key, $type, $property_type, 'professional_fee', $state));
 
     $prof_html = '<tr><td>' . $type_label . ' ' . $property_label . '</td>';
     $prof_html .= '<td>$' . number_format($professional_fee, 2) . '</td></tr>';
 
     $disb_html = '';
     $disb_total = 0;
-    foreach (osl_cq_get_default_fee_fields($type, $property_type) as $fkey => $flabel) {
+    foreach (osl_cq_get_default_fee_fields($type, $property_type, $state) as $fkey => $flabel) {
         if ($fkey === 'professional_fee') {
             continue;
         }
-        $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey));
+        $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey, $state));
         if ($val > 0) {
             $disb_total += $val;
             $disb_html .= '<tr><td>' . esc_html($flabel) . '</td>';
@@ -41,9 +47,9 @@ function osl_cq_calculate() {
     }
 
     $council_html = '';
-    if (osl_cq_normalize_transaction_type($type) === 'purchase') {
+    if (osl_cq_state_uses_councils($state) && osl_cq_normalize_transaction_type($type) === 'purchase') {
         foreach (osl_cq_get_council_fee_fields($type, $property_type) as $fkey => $flabel) {
-            $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey));
+            $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey, $state));
 
             if ($fkey === 'water_meter_reading' && $val <= 0) {
                 continue;
@@ -81,6 +87,7 @@ function osl_cq_calculate() {
 
     osl_cq_log_activity('quote_generated', array_merge($tracking_context, array(
         'transaction_type' => osl_cq_normalize_transaction_type($type),
+        'state' => $state,
         'property_type' => $property_type,
         'council' => $council_name,
         'quote_total' => $total,
@@ -92,6 +99,7 @@ function osl_cq_calculate() {
         'quote_total' => round($total, 2),
         'quote_total_band' => osl_cq_activity_quote_band($total),
         'transaction_type' => osl_cq_normalize_transaction_type($type),
+        'state' => $state,
         'property_type' => $property_type,
         'council' => $council_name,
         'suburb' => $tracking_context['suburb'] ?? '',
@@ -105,7 +113,13 @@ function osl_cq_unlock() {
     check_ajax_referer('osl_cq_nonce', 'nonce');
     $email = sanitize_email($_POST['email'] ?? '');
     $type = sanitize_text_field($_POST['property_for'] ?? '');
+    $state = osl_cq_normalize_state($_POST['state'] ?? osl_cq_get_default_council_state());
     $council_key = sanitize_text_field($_POST['council'] ?? '');
+
+    if (!osl_cq_state_uses_councils($state)) {
+        $council_key = '';
+    }
+
     $property_type = sanitize_text_field($_POST['property_type'] ?? '');
 
     if (!is_email($email)) {
@@ -116,35 +130,35 @@ function osl_cq_unlock() {
     osl_cq_save_lead($email, $type, $council_key, $property_type);
 
     // Build and send the quote email
-    if (osl_cq_get_pricing_data($council_key, osl_cq_get_default_council_state()) === false) {
+    if (osl_cq_get_pricing_data($council_key, $state) === false) {
         wp_send_json_error(array('message' => 'Pricing is not available for this state.'));
     }
 
-    $council_name = osl_cq_get_council_name($council_key);
+    $council_name = osl_cq_state_uses_councils($state) ? osl_cq_get_council_name($council_key) : osl_cq_get_state_label($state);
     $property_types = osl_cq_get_property_types();
     $property_label = $property_types[$property_type] ?? $property_type;
     $type_label = (osl_cq_normalize_transaction_type($type) === 'purchase') ? 'Purchase' : 'Selling';
 
-    $professional_fee = floatval(osl_cq_get_price($council_key, $type, $property_type, 'professional_fee'));
+    $professional_fee = floatval(osl_cq_get_price($council_key, $type, $property_type, 'professional_fee', $state));
 
     $prof_rows = '<tr><td style="padding:10px;">' . $type_label . ' ' . $property_label . ' (' . $council_name . ')</td><td style="padding:10px;text-align:right;">$' . number_format($professional_fee, 2) . '</td></tr>';
 
     $disb_rows = '';
     $disb_total = 0;
-    foreach (osl_cq_get_default_fee_fields($type, $property_type) as $fkey => $flabel) {
+    foreach (osl_cq_get_default_fee_fields($type, $property_type, $state) as $fkey => $flabel) {
         if ($fkey === 'professional_fee') {
             continue;
         }
-        $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey));
+        $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey, $state));
         if ($val > 0) {
             $disb_total += $val;
             $disb_rows .= '<tr><td style="padding:10px;">' . esc_html($flabel) . '</td><td style="padding:10px;text-align:right;">$' . number_format($val, 2) . '</td></tr>';
         }
     }
 
-    if (osl_cq_normalize_transaction_type($type) === 'purchase') {
+    if (osl_cq_state_uses_councils($state) && osl_cq_normalize_transaction_type($type) === 'purchase') {
         foreach (osl_cq_get_council_fee_fields($type, $property_type) as $fkey => $flabel) {
-            $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey));
+            $val = floatval(osl_cq_get_price($council_key, $type, $property_type, $fkey, $state));
 
             if ($fkey === 'water_meter_reading' && $val <= 0) {
                 continue;

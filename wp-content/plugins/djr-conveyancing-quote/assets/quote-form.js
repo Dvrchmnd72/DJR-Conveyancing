@@ -26,7 +26,10 @@ jQuery(document).ready(function($) {
             page_path: window.location.pathname,
             property_for: $("input[name='osl_property_for']:checked").val() || '',
             transaction_type: $("input[name='osl_property_for']:checked").val() || '',
-            council: $("#osl_council").val() || '',
+            state: $("#osl_state").val() || 'QLD',
+            council: (($("#osl_state").val() || 'QLD') === 'QLD')
+                ? ($("#osl_council").val() || '')
+                : ($("#osl_state option:selected").text().trim() || $("#osl_state").val() || ''),
             property_type: $("#osl_property_type").val() || '',
             utm_source: getUrlParam('utm_source'),
             utm_medium: getUrlParam('utm_medium'),
@@ -99,6 +102,24 @@ jQuery(document).ready(function($) {
         logActivity('quote_started');
     }
 
+    function syncStateFields() {
+        var state = $("#osl_state").val() || 'QLD';
+
+        if (state === 'QLD') {
+            $('.osl-cq-council-field').show();
+        } else {
+            $('.osl-cq-council-field').hide();
+        }
+    }
+
+    syncStateFields();
+
+    $(document).on('change', '#osl_state', function() {
+        syncStateFields();
+        $('#osl-cq-result').empty();
+        currentQuoteMeta = {};
+    });
+
     // GET QUOTE
     $(document).on('click', '#osl-cq-get-quote', function(e) {
         e.preventDefault();
@@ -112,6 +133,7 @@ jQuery(document).ready(function($) {
             nonce: OslCQ.nonce,
             quote_token: quoteToken,
             property_for: $("input[name='osl_property_for']:checked").val(),
+            state: $("#osl_state").val() || 'QLD',
             council: $("#osl_council").val(),
             property_type: $("#osl_property_type").val()
         }, {
@@ -139,6 +161,7 @@ jQuery(document).ready(function($) {
                         quote_total: response.data.quote_total || '',
                         quote_total_band: response.data.quote_total_band || '',
                         transaction_type: response.data.transaction_type || data.property_for || '',
+                        state: response.data.state || data.state || $("#osl_state").val() || 'QLD',
                         property_type: response.data.property_type || data.property_type || '',
                         council: response.data.council || '',
                         suburb: response.data.suburb || ''
@@ -191,6 +214,7 @@ jQuery(document).ready(function($) {
             nonce: OslCQ.nonce,
             email: email,
             property_for: $("input[name='osl_property_for']:checked").val(),
+            state: $("#osl_state").val() || 'QLD',
             council: $("#osl_council").val(),
             property_type: $("#osl_property_type").val()
         };
